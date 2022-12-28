@@ -1,0 +1,242 @@
+﻿@media all and (max-width: 1400px) {
+  .auth {
+    grid-template-columns: auto 450px; }
+  .auth .hero h1 {
+    font-size: 45px; }
+  .auth .hero img.main_img {
+    max-width: 400px; } }
+
+@media all and (max-width: 1300px) {
+  .app .main .main_content {
+    padding: 20px 40px; } }
+
+@media all and (max-width: 1024px) {
+  .app .main .main_content {
+    padding: 20px; } }
+
+@media all and (max-width: 768px) {
+  .pnotify {
+    left: 0 !important; }
+  .app.front_app .main_content h1 {
+    font-size: 18px; }
+  .box_front h2 {
+    font-size: 16px; }
+  .form-check-label, .box_front .policy {
+    text-align: left;
+    font-size: 13px; }
+  .box_front p {
+    margin-bottom: 10px;
+    font-size: 12px; }
+  .g-recaptcha {
+    max-width: 120px;
+    height: 60px;
+    transform: scale(0.7);
+    transform-origin: 0 0; }
+  .auth {
+    display: flex;
+    flex-direction: column-reverse;
+    height: auto;
+    background: linear-gradient(158deg, #59b6b1 23%, #2487e3 79%);
+    padding-top: 40px; }
+    .auth:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url(../images/logo.jpg) no-repeat;
+      background-size: cover;
+      z-index: -1; }
+  .auth .hero header {
+    margin: 40px 0; }
+  .auth .hero h1 {
+    text-align: center; }
+  .auth .hero h2 {
+    text-align: center; }
+  .auth .hero {
+    background: none; }
+    .auth .hero:after {
+      background: none; }
+  .auth .main_panel {
+    padding-bottom: 40px;
+    max-width: 400px;
+    margin: auto; }
+  .auth .main_panel .login_logo {
+    max-width: 300px;
+    margin: auto;
+    display: block;
+    margin-bottom: 40px; }
+  .auth .hero img.main_img {
+    max-width: 400px;
+    width: 80%; }
+  .auth .hero img.bottom {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    left: -20px;
+    margin: 40px auto;
+    display: block; }
+  .auth .sm_buttons {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px; }
+  .auth .sm_buttons a {
+    width: 100%;
+    font-size: 14px !important; }
+  .app {
+    grid-template-columns: auto; }
+  .app .main {
+    grid-column: 1/-1; }
+  .app .sidebar {
+    position: absolute;
+    left: -100vw;
+    transition: all 0.2s ease; }
+    .app .sidebar.active {
+      left: 0; }
+  .app .logo {
+    width: 150px;
+    position: absolute; }
+  .app .main .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px; }
+  .modal-content .link {
+    margin-bottom: 10px; }
+  .mobile_menu {
+    display: block; }
+    .mobile_menu .menu_trigger {
+      position: relative;
+      width: 20px;
+      top: 3px;
+      display: inline-block;
+      margin-right: 10px;
+      transition: all 0.2s ease;
+      z-index: 100; }
+      .mobile_menu .menu_trigger i {
+        transition: all 0.2s ease;
+        font-size: 24px; }
+      .mobile_menu .menu_trigger.active i {
+        transform: rotateZ(90deg); }
+  .panel {
+    width: 100%; }
+  .app .main .top .user {
+    margin: 0; }
+  .app .main .top .credit span {
+    display: none; }
+  .app .main .top .logout {
+    padding-left: 10px;
+    margin: 0; }
+  .app .main .top .logout span {
+    display: none; }
+  .signers_home {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    margin-bottom: 50px; }
+  .signers_home .signers_home_item {
+    margin-bottom: 40px; }
+  .signers_home .signers_home_item span.img {
+    margin: auto; }
+  .signers_home .signers_home_item span.name {
+    margin-top: 10px; }
+  .signers_home .link_wrapper {
+    margin-top: 0px; }
+  .signers_box {
+    margin-bottom: 40px; }
+  .signers_box .signers_box_inner {
+    padding: 20px; }
+  .signers_box .steps_header ul li {
+    margin-bottom: 10px; }
+    .signers_box .steps_header ul li img {
+      display: none; }
+  .signers_box .steps .step_content {
+    padding: 0; }
+  .signers_box .steps.step_2 .signers_form .form-group {
+    padding: 0; }
+  .signers_box .steps .buttons {
+    display: flex;
+    flex-direction: column-reverse; }
+    .signers_box .steps .buttons a {
+      display: block;
+      text-align: center;
+      margin-bottom: 10px; }
+  .app .main header.main_route {
+    padding-bottom: 110px; }
+  .route {
+    display: flex;
+    flex-direction: column; }
+  .route .item {
+    padding: 0; }
+  .route .item .img {
+    width: 150px;
+    height: 150px; }
+  .route .item .img img {
+    width: 60%; }
+  #drop-area {
+    width: 100%; }
+  .billing {
+    padding: 20px 0;
+    margin-bottom: 40px; }
+  .billing .filter {
+    margin-bottom: 0px; }
+    .billing .filter .input-group {
+      margin-bottom: 20px; }
+  .signatures {
+    padding-top: 10px;
+    margin-bottom: 40px; }
+    .signatures .filter .input-group {
+      margin-bottom: 10px; }
+    .signatures table .link {
+      margin-bottom: 10px; }
+  .signatures_detail .link {
+    margin-bottom: 10px; }
+  .signatures_detail header h3 {
+    text-align: left; }
+  .profile {
+    margin-bottom: 40px; }
+  .wallet .box {
+    margin-top: 0;
+    width: 100%; }
+  .wallet .box form {
+    padding: 20px; }
+  .mobile_logo {
+    display: block;
+    margin-right: 15px;
+    padding-left: 10px; }
+    .mobile_logo img {
+      width: 50px; }
+  .app .main .sub_top {
+    display: flex;
+    align-items: center;
+    padding: 10px; }
+  .app .main .main_content {
+    margin-bottom: 40px; }
+  .box_front.review_doc ul li {
+    flex-direction: column;
+    text-align: center; }
+    .box_front.review_doc ul li .action_links {
+      margin-top: 10px; }
+  .review .doc {
+    flex-direction: column; }
+    .review .doc .link {
+      margin-top: 10px; } }
+
+@media all and (max-width: 500px) {
+  .app .main .main_content {
+    height: 100vh; }
+  .otp input {
+    width: 13%;
+    margin: 0 2px;
+    font-size: 20px; }
+  .box_front h2 {
+    font-size: 18px;
+    margin-bottom: 10px; }
+  .box_front p {
+    font-size: 18px; }
+  .error_msg {
+    padding-bottom: 30px; }
+  .otp .link_group .link.secundary {
+    width: 100%;
+    margin-top: 10px; } }

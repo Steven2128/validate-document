@@ -1,0 +1,1616 @@
+//Fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+$main_font: 'Montserrat', sans-serif;
+$body_font: 'Open Sans', sans-serif;
+
+
+//Colors
+$dark_blue: #0C1632;
+$light_blue: #0582BE;
+$blue: #153667;
+$orange: #E36924;
+$grey: #575757;
+
+//General
+body {
+    margin: 0;
+    font-family: $body_font;
+    background-color: red;
+}
+
+//Visor Pdf Js
+#pdf-js-viewer {
+    width: 100%;
+    margin-top: 20px;
+    height: calc(100vh - 150px);
+}
+
+@keyframes toast {
+    0% {
+        top: 60%;
+    }
+
+    100% {
+        top: 50%;
+    }
+}
+
+@keyframes toast_hide {
+    from {
+        top: 50%;
+        opacity: 1;
+    }
+
+    to {
+        top: 40%;
+        opacity: 0;
+    }
+}
+
+.toast {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    padding: 20px;
+
+    &.active {
+        animation-name: toast;
+        animation-duration: 0.5s;
+        animation-timing-function: ease;
+    }
+
+    &.hide_toast {
+        animation-name: toast_hide;
+        animation-duration: 0.5s;
+        animation-timing-function: ease;
+    }
+}
+
+.link {
+    position: relative;
+    height: auto;
+    margin: auto;
+    display: inline-block;
+    background: $light_blue;
+    border-radius: 40px;
+    border: 1px solid $light_blue;
+    padding: 5px 40px;
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: $dark_blue;
+        text-decoration: none;
+        color: #fff;
+        border-color: $blue;
+    }
+
+    &.secundary {
+        background: transparent;
+        border: 1px solid $light_blue;
+        color: $light_blue;
+
+        &:hover {
+            background: $light_blue;
+            color: #fff;
+        }
+    }
+
+    &.small {
+        font-size: 12px;
+        padding: 7px 20px;
+    }
+
+    &.red {
+        color: red;
+        border-color: red;
+
+        &:hover {
+            background-color: red;
+        }
+    }
+}
+
+.modal {
+    .modal-body {
+        padding: 30px 20px;
+    }
+
+    .modal_img {
+        position: absolute;
+        left: 50%;
+        top: -150px;
+        transform: translateX(-50%);
+    }
+
+    p {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: $light_blue;
+    }
+}
+
+//PDF Viewer wrapper
+.viewer {
+    height: 500px;
+    overflow-y: scroll;
+    background: rgba(0,0,0,0.1);
+
+    canvas {
+        width: 100%;
+    }
+}
+
+//Layout
+.app {
+    display: grid;
+    grid-template-columns: 290px auto;
+    min-height: 100vh;
+
+    &.front_app {
+        grid-template-columns: initial;
+
+        .sidebar {
+            position: absolute;
+            width: 240px;
+            height: auto;
+            grid-column: initial;
+            background: none;
+        }
+
+        .main {
+            grid-column: initial;
+            background: $blue;
+        }
+
+        .main_content {
+            h1 {
+                text-align: center;
+                font-weight: bold;
+                font-size: 24px;
+                color: #fff;
+                text-transform: uppercase;
+                margin-top: 20px;
+                margin-bottom: 30px;
+            }
+
+            table.table {
+                thead {
+                    th {
+                        border-top: none;
+                        border-bottom-color: $light_blue;
+                        color: $light_blue;
+                        font-size: 18px;
+                    }
+                }
+
+                tbody {
+                    td {
+                        color: #616161;
+                        border: none;
+
+                        .state {
+                            position: relative;
+                            width: 100%;
+                            height: 8px;
+                            background: rgb(169, 169, 169);
+                            display: block;
+
+                            &:after {
+                                content: '';
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                display: block;
+                                height: 100%;
+                            }
+
+                            &.started {
+                                &:after {
+                                    background-color: rgb(84, 84, 84);
+                                    width: 20%;
+                                }
+                            }
+
+                            &.created {
+                                &:after {
+                                    background-color: $light_blue;
+                                    width: 20%;
+                                }
+                            }
+
+                            &.declined {
+                                &:after {
+                                    background-color: red;
+                                    width: 100%;
+                                }
+                            }
+
+                            &.processing {
+                                &:after {
+                                    background-color: orange;
+                                    width: 50%;
+                                }
+                            }
+
+                            &.successful {
+                                &:after {
+                                    background-color: green;
+                                    width: 100%;
+                                }
+                            }
+                        }
+
+                        &.started {
+                            color: rgb(84, 84, 84);
+                        }
+
+                        &.created {
+                            color: $light_blue;
+                        }
+
+                        &.declined {
+                            color: red;
+                        }
+
+                        &.processing {
+                            color: orange;
+                        }
+
+                        &.successful {
+                            color: green;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    .logo {
+        position: fixed;
+        width: 250px;
+        z-index: 100;
+        box-shadow: 7px 0 14px rgba(black, 0.29);
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .main {
+        position: relative;
+        grid-column: 2/3;
+
+        .top {
+            background: rgb(36,135,227);
+            background: linear-gradient(133deg, rgba(36,135,227,1) 55%, rgba(89,182,177,1) 100%);
+            padding: 5px 10px;
+            color: #fff;
+            text-align: right;
+
+            a {
+                color: #ffffff;
+                text-decoration: none;
+                font-size: 13px;
+            }
+
+            .user, .credit, .logout {
+                display: inline;
+                margin: 0 10px;
+                text-transform: uppercase;
+            }
+
+            .user {
+                a {
+                    font-weight: bold;
+                    transition: all 0.2s ease;
+
+                    &:hover {
+                        color: $blue;
+                    }
+                }
+            }
+
+            .credit {
+                font-weight: lighter;
+            }
+
+            .logout {
+                padding-left: 20px;
+                border-left: 1px solid #fff;
+
+                form {
+                    display: inline;
+                }
+
+                button {
+                    border: none;
+                    background: none;
+                    text-transform: uppercase;
+                    color: #fff;
+                    transition: all 0.2s ease;
+
+                    &:hover {
+                        color: $blue;
+                    }
+                }
+            }
+        }
+
+        .sub_top {
+            padding: 20px 0;
+            padding-left: 320px;
+            background: rgba($light_blue, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: end;
+
+            p {
+                color: #fff;
+                margin-bottom: 0;
+                font-size: 25px;
+            }
+
+            .suppot_link {
+                padding-right: 20px;
+
+                a {
+                    color: #fff;
+                }
+            }
+        }
+
+        header {
+            background: $blue;
+            text-align: center;
+            padding-top: 50px;
+            padding-bottom: 40px;
+
+            h1 {
+                margin: 0;
+                color: #fff;
+                text-transform: uppercase;
+                font-weight: bold;
+
+                span {
+                    display: block;
+                    font-weight: lighter;
+                    font-size: 80%;
+                    margin-bottom: 10px;
+                }
+            }
+
+            p {
+                color: #fff;
+                font-size: 26px;
+                font-weight: lighter;
+            }
+
+            &.main_route {
+                padding-bottom: 150px;
+            }
+        }
+
+        .main_content {
+            padding: 20px 100px;
+
+            header {
+                margin: 0;
+                margin-bottom: 30px;
+                padding: 0;
+                background: none;
+            }
+        }
+
+        footer {
+            position: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: $light_blue;
+            z-index: 100;
+            padding: 8px 0;
+
+            p {
+                margin: 0;
+                padding-left: 20px;
+                color: #fff;
+                text-transform: uppercase;
+                font-size: 12px;
+
+                a {
+                    font-size: 12px;
+                }
+            }
+
+            a {
+                color: #fff;
+                font-size: 14px;
+                font-weight: lighter;
+                padding-right: 20px;
+            }
+        }
+    }
+}
+
+
+//Auth
+
+.auth {
+    display: grid;
+    grid-template-columns: auto 550px;
+    height: 100vh;
+
+    .hero {
+        position: relative;
+        background: url('../images/login_bg.png') no-repeat;
+        background-size: cover;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(158deg, rgba(89,182,177,1) 23%, rgba(36,135,227,1) 79%);
+            z-index: -1;
+        }
+
+        h1, h2 {
+            color: #fff;
+        }
+
+        h1 {
+            font-family: $main_font;
+            font-weight: 900;
+            font-size: 54px;
+            font-style: italic;
+            letter-spacing: 0.1rem;
+        }
+
+        h2 {
+            font-weight: lighter;
+            font-style: italic;
+            font-size: 32px;
+            font-family: $body_font;
+        }
+
+        header {
+            margin-top: 100px;
+            margin-left: 100px;
+            margin-bottom: 50px;
+        }
+
+        img.main_img {
+            display: block;
+            margin: auto;
+        }
+
+        img.bottom {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            width: 200px;
+        }
+    }
+
+    .main_panel {
+        background: #F1F1F1;
+        box-shadow: 0 -5px 14px rgba($color: #000000, $alpha: 0.30);
+
+        .login_logo {
+            margin-bottom: 70px;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: $light_blue;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 30px;
+        }
+
+        form {
+            position: relative;
+            width: 80%;
+            margin: auto;
+            
+            input {
+                margin-bottom: 20px;
+                border: none;
+            }
+
+            input[type='submit'] {
+                background: $orange;
+                color: #fff;
+                text-transform: uppercase;
+                font-weight: bold;
+                transition: all 0.2s ease;
+
+                &:hover {
+                    background: $light_blue;
+                }
+            }
+        }
+
+        .forgot_password {
+            text-align: center;
+            color: $light_blue;
+            display: block;
+        }
+    }
+}
+
+// Route
+.route {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -100px;
+
+    .item {
+        text-align: center;
+        padding: 0 50px;
+
+        a {
+            text-decoration: none;
+        }
+
+        .img {
+            display: block;
+            margin: auto;
+            width: 250px;
+            height: 250px;
+            background: $light_blue;
+            border-radius: 100%;
+            margin-bottom: 20px;
+            transform: scale(1);
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: center;
+
+            img {
+                transform: scale(1);
+                transition: all 0.2s ease;
+            }
+
+            &:hover {
+                transform: scale(1.05);
+
+                img {
+                    transform: scale(0.9);
+                }
+            }
+        }
+
+        h3 {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 30px;
+            color: $light_blue;
+        }
+
+        p {
+            color: $light_blue;
+            font-size: 20px;
+        }
+    }
+}
+
+// Cargar Documentos
+
+#drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 20px;
+    width: 480px;
+    margin: 50px auto;
+    padding: 40px 20px;
+    text-align: center;
+
+    img.icon {
+        margin-bottom: 20px;
+        transition: all 0.6s ease;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    p {
+        font-weight: bold;
+        font-size: 20px;
+        color: #878787;
+        text-transform: uppercase;
+    }
+}
+
+#drop-area.highlight {
+    border-color: $light_blue;
+}
+
+.files_form {
+    margin-bottom: 10px;
+}
+
+#gallery {
+    margin-top: 10px;
+}
+
+#gallery img {
+    display: none;
+    width: 150px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 40px;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 40px;
+    border: 1px solid $light_blue;
+    color: $light_blue;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.button:hover {
+    background: $light_blue;
+    color: #fff;
+}
+
+#fileElem {
+    display: none;
+}
+
+.doc_confirm {
+    padding-top: 50px;
+    margin-bottom: 40px;
+    text-align: center;
+
+    h3 {
+        color: $orange;
+        text-transform: uppercase;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .doc_name {
+        font-size: 24px;
+        color: $grey;
+        text-transform: uppercase;
+        display: block;
+        text-decoration: none;
+        margin-bottom: 20px;
+
+        i {
+            color: $orange;
+            margin-left: 10px;
+        }
+    }
+
+    a.small {
+        i {
+            margin-left: 5px;
+        }
+    }
+}
+
+// Home Firmantes
+.signers_home {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    margin: auto;
+    padding-top: 50px;
+
+    .signers_home_item {
+        margin: 0 20px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            transform: scale(1.05);
+
+            span.img {
+                box-shadow: 0 4px 10px rgba(black, 0.35);
+                background: $blue;
+            }
+        }
+
+        a {
+            display: grid;
+            text-decoration: none;
+        }
+
+        span.img {
+            display: block;
+            background: $light_blue;
+            width: 200px;
+            height: 200px;
+            border-radius: 100%;
+            margin-bottom: 20px;
+            overflow: hidden;
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 4px rgba(black, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        span.name {
+            text-align: center;
+            display: block;
+            color: $light_blue;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    }
+
+    .link_wrapper {
+        grid-column: 1/-1;
+        margin-top: 50px;
+    }
+}
+
+// Agregar Firmantes
+
+.signers_box {
+    box-shadow: 0 0 20px rgba($color: #000000, $alpha: 0.2);
+    border-radius: 20px;
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+
+    h2 {
+        background: $orange;
+        text-align: center;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 18px;
+        padding: 15px 0;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+    .signers_box_inner {
+        padding: 40px;
+    }
+
+    .steps_header {
+        margin-bottom: 20px;
+        border-bottom: 1px solid $light_blue;
+
+        ul {
+            li {
+                color: #8C8C8C;
+                font-size: 18px;
+                font-weight: bold;
+
+                &.active {
+                    color: $light_blue;
+
+                    span {
+                        border-color: $light_blue;
+                        background: $light_blue;
+                        color: #fff;
+                    }
+                }
+
+                span {
+                    border: 1px solid #8C8C8C;
+                    padding: 5px;
+                    padding-top: 1px;
+                    border-radius: 100%;
+                    width: 30px;
+                    height: 30px;
+                    display: inline-block;
+                    text-align: center;
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+
+    .steps {
+        position: relative;
+        visibility: hidden;
+        right: -100px;
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.2s ease;
+
+        &.active {
+            visibility: visible;
+            opacity: 1;
+            right: 0;
+            height: auto;
+        }
+
+        .step_content {
+            padding: 0 20px;
+        }
+
+        &.step_1 {
+            .sender {
+                p {
+                    color: $dark_blue;
+                }
+
+                .name {
+                    font-weight: bold;
+                    margin-bottom: 5px;
+                }
+
+                .id {
+                    font-weight: lighter;
+                }
+            }
+        }
+
+        &.step_2 {
+            .signers_form {
+
+                .form-group {
+                    margin-bottom: 30px;
+                    padding: 20px;
+                    padding-bottom: 30px;
+                    border-bottom: 1px solid $light_blue;
+                }
+
+                label {
+                    color: $dark_blue;
+                }
+
+                input {
+                    margin-bottom: 20px;
+                }
+            }
+
+            @keyframes show {
+                from {
+                    opacity: 0;
+                    top: -30px;
+                    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+                }
+
+                to {
+                    opacity: 1;
+                    top: 0;
+                    box-shadow: 0 0 0 rgba(0,0,0,0);
+                    ;
+                }
+            }
+
+            .new_form_row {
+                position: relative;
+                animation-name: show;
+                animation-duration: 0.8s;
+            }
+
+            .time_term {
+                margin-bottom: 40px;
+                margin-top: 30px;
+            }
+        }
+
+        .buttons {
+            padding-top: 20px;
+            border-top: 1px solid $light_blue;
+            display: grid;
+            grid-template-columns: auto auto;
+
+            .right {
+                justify-self: end;
+            }
+
+            .left {
+                justify-self: start;
+            }
+        }
+    }
+}
+
+// Mis Firmas
+
+.signatures {
+    padding-top: 40px;
+
+    form {
+        margin-bottom: 30px;
+
+        input.form-control {
+            border-right: none;
+        }
+
+        .input-group-append {
+            .input-group-text {
+                background: none;
+                border-left: none;
+            }
+        }
+    }
+}
+
+// Mis Firmas Detalle
+
+.signatures_detail {
+
+    header {
+        display: grid;
+        grid-template-columns: auto auto;
+        border-bottom: 1px solid $light_blue;
+
+        h3 {
+            justify-self: start;
+            color: $light_blue;
+            font-weight: bold;
+        }
+
+        a {
+            justify-self: end;
+            color: $light_blue;
+            text-decoration: none;
+            font-weight: bold;
+
+            i {
+                color: inherit;
+            }
+
+            &:hover {
+                color: $blue;
+            }
+        }
+    }
+
+    h4 {
+        color: $light_blue;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .links_group {
+        margin-bottom: 40px;
+        margin-top: 30px;
+
+        a:nth-of-type(1) {
+            margin-right: 10px;
+        }
+    }
+
+    .add_signer {
+        margin-bottom: 40px;
+    }
+
+    .signature_item {
+        position: relative;
+        background: #fff;
+        box-shadow: 0 0 10px rgba($color: #1f1f1f, $alpha: 0.30);
+        border-radius: 20px;
+        margin-bottom: 40px;
+
+
+        .box {
+            padding: 25px 30px;
+
+            &.doc {
+                display: grid;
+                grid-template-columns: auto auto;
+                align-items: center;
+
+                a {
+                    color: $light_blue;
+                }
+
+                .action {
+                    justify-self: self-end;
+
+                    a {
+                        position: relative;
+                        margin: 0 8px;
+                        color: $light_blue;
+                        display: inline-block;
+                        z-index: 10;
+
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%) scale(0.8);
+                            width: 100%;
+                            height: 100%;
+                            z-index: -1;
+                            border-radius: 100%;
+                            width: 40px;
+                            height: 40px;
+                            transition: all 0.2s ease;
+                            background: rgba(0,0,0,0);
+                        }
+
+                        &:hover {
+                            color: $blue;
+
+                            &:before {
+                                background: rgba(0,0,0,0.1);
+                                transform: translate(-50%, -50%) scale(1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        p {
+            margin: 0;
+            color: $grey;
+        }
+
+        ul {
+            li {
+                margin-bottom: 12px;
+                color: $grey;
+            }
+        }
+
+        .action_links {
+            margin-top: 30px;
+            text-align: center;
+
+            .link {
+                padding: 5px;
+                width: 40px;
+                height: 40px;
+                display: inline-block;
+                font-size: 20px;
+                margin: 0 5px;
+            }
+        }
+
+
+        .tag {
+            text-align: center;
+            padding: 10px 0;
+            color: #fff;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+
+            &.declined {
+                background-color: red;
+            }
+
+            &.success {
+                background-color: green;
+            }
+
+            &.pending {
+                background-color: orange;
+            }
+        }
+    }
+}
+
+.body_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+
+    &.active {
+        opacity: 0.8;
+        visibility: visible;
+    }
+}
+
+.panel {
+    position: fixed;
+    top: 0;
+    right: -1500px;
+    width: 70%;
+    height: 100%;
+    padding: 40px;
+    background: #fff;
+    box-shadow: -10px 0 20px rgba(0,0,0,0.2);
+    opacity: 0;
+    z-index: 100;
+    transition: all 0.2s ease;
+    padding-bottom: 10px;
+
+    &.open {
+        opacity: 1;
+        right: 0;
+    }
+
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+}
+
+.edit_signer, .add_signer_panel {
+    h3 {
+        color: $light_blue;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    form {
+        input, select {
+            margin-bottom: 20px;
+        }
+
+        .link {
+            position: relative;
+            margin: auto;
+            margin-top: 40px;
+            display: block;
+            height: auto;
+            width: 300px;
+        }
+    }
+}
+
+// Recarga
+
+.wallet {
+    .box {
+        width: 400px;
+        position: relative;
+        margin: auto;
+        margin-top: 50px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        text-align: center;
+
+        h2 {
+            background: $orange;
+            color: #fff;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding: 14px 0;
+            text-transform: uppercase;
+            font-weight: normal;
+            font-size: 20px;
+        }
+
+        form {
+            padding: 30px 40px;
+            color: $grey;
+
+            label {
+                margin-bottom: 15px;
+            }
+
+            .input-group-prepend {
+                display: inline;
+
+                .input-group-text {
+                    background: none;
+                    border: none;
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+            }
+
+            input {
+                margin-bottom: 20px;
+            }
+
+            button {
+                height: auto;
+                margin-bottom: 10px;
+
+                i {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}
+
+
+// Front Signature Flow
+
+.box_front {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    padding: 20px 30px;
+    background: #fff;
+    border-radius: 10px;
+    border-top: 5px solid $orange;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+
+    h2 {
+        color: $light_blue;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    p {
+        text-align: center;
+        font-size: 16px;
+        color: $grey;
+        margin-bottom: 20px;
+    }
+
+    input.form-control {
+        margin-bottom: 20px;
+        height: 50px;
+        border-radius: 0;
+        border: 0;
+        border-left: 4px solid $blue;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        transition: all 0.2s ease;
+
+        &:focus {
+            border-color: $orange;
+            border-left-width: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+    }
+
+    button {
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+
+    .g-recaptcha {
+        div {
+            position: relative;
+            margin: auto;
+        }
+    }
+
+    .error {
+        color: red;
+        margin-top: 10px;
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    .policy {
+        color: $light_blue;
+        text-align: center;
+        font-size: 16px;
+        display: inline;
+        margin-bottom: 10px;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// Review Document
+
+.box_front.review_doc {
+    max-width: 800px;
+    padding: 10px 30px;
+
+    ul {
+        margin-top: 20px;
+        margin-bottom: 0 !important;
+
+        li {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 1px solid $light_blue;
+
+            &:last-child {
+                border: none;
+            }
+
+            .action_links {
+                display: flex;
+
+                a {
+                    margin-left: 10px;
+
+                    &:nth-child(2){
+                        width: 210px;
+                    }
+                }
+            }
+
+            .doc_name {
+                color: $light_blue;
+            }
+        }
+    }
+}
+
+// OTP
+
+.otp {
+    text-align: center;
+
+    input {
+        display: inline;
+        width: 50px;
+        height: 80px;
+        border: none;
+        border-bottom: 3px solid $light_blue;
+        margin: 0 10px;
+        text-align: center;
+        color: $light_blue;
+        font-size: 35px;
+        font-weight: bold;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .link_group {
+        margin-top: 40px;
+
+        a {
+            margin: 0 5px;
+        }
+
+        .link.secundary {
+            margin-bottom: 20px;
+        }
+    }
+
+    .otp_error {
+        color: red;
+        margin-top: 10px;
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+}
+
+// Review and sign
+
+.review {
+    .box_front {
+        max-width: 600px;
+    }
+
+    .doc {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding: 10px 0;
+        border-top: 1px solid $light_blue;
+        border-bottom: 1px solid $light_blue;
+
+        a {
+            margin: initial;
+            color: $light_blue;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    }
+
+    .signers {
+        h3 {
+            color: $grey;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+
+            thead {
+                border-bottom: 1px solid $grey;
+            }
+
+            tbody {
+                padding-top: 20px;
+            }
+
+            th, td {
+                padding: 8px 0;
+                color: $grey;
+            }
+
+            td {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .action {
+        text-align: center;
+        margin-top: 0px;
+        padding-top: 20px;
+        border-top: 1px solid $light_blue;
+    }
+}
+
+
+// Billing
+
+.billing {
+    padding-top: 50px;
+
+    .filter {
+        margin-bottom: 40px;
+    }
+
+    .back_link {
+        margin-bottom: 20px;
+        display: inline-block;
+        color: $light_blue;
+        font-weight: bold;
+        text-decoration: none;
+
+        i {
+            font-size: 90%;
+        }
+
+        &:hover {
+            color: $blue;
+        }
+    }
+
+    .billing_table {
+        tr:last-child {
+            background: none;
+        }
+    }
+
+    .doc_list {
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        padding: 20px;
+        border-radius: 20px;
+
+        h4 {
+            color: $light_blue;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 1px solid $light_blue;
+        }
+
+        ul {
+            li {
+                margin-bottom: 8px;
+
+                a {
+                    color: $grey;
+
+                    i {
+                        font-size: 80%;
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    h3 {
+        margin-bottom: 20px;
+        color: $light_blue;
+        font-weight: bold;
+    }
+}
+
+// Contacts
+
+.add_contact {
+    margin-bottom: 20px;
+}
+
+// Error message
+.error_msg {
+    text-align: center;
+
+    h2 {
+        color: #fff;
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    p {
+        color: #fff;
+        font-size: 20px;
+    }
+
+    img {
+        width: 100%;
+        max-width: 500px;
+        margin-bottom: 40px;
+    }
+}
+
+//loader
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background: rgba($color: $blue, $alpha: 0.9);
+    z-index: 10000;
+
+    @keyframes loader {
+        0% {
+            width: 0px;
+        }
+
+        100% {
+            width: 100px;
+        }
+    }
+
+    &.active {
+        img {
+            width: 100px;
+        }
+    }
+
+    img {
+        margin-bottom: 30px;
+        width: 0px;
+        animation: loader 0.2s;
+    }
+
+    .text {
+        color: #fff;
+        font-weight: lighter;
+        display: block;
+    }
+    .paragraph {
+        font-size: 1.6rem;
+        color: #fff;
+    }
+}
